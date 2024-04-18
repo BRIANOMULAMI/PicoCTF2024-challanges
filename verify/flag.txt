@@ -1,0 +1,10 @@
+ctf-player@pico-chall$ ls
+checksum.txt  decrypt.sh  files
+ctf-player@pico-chall$ cat checksum.txt 
+03b52eabed517324828b9e09cbbf8a7b0911f348f76cf989ba6d51acede6d5d8
+ctf-player@pico-chall$ sha256sum files/* | greap 03b52eabed517324828b9e09cbbf8a7b0911f348f76cf989ba6d51acede6d5d8
+-bash: greap: command not found
+ctf-player@pico-chall$ sha256sum files/* | grep 03b52eabed517324828b9e09cbbf8a7b0911f348f76cf989ba6d51acede6d5d8
+03b52eabed517324828b9e09cbbf8a7b0911f348f76cf989ba6d51acede6d5d8  files/00011a60
+ctf-player@pico-chall$ ./decrypt.sh files/00011a60
+picoCTF{trust_but_verify_00011a60}
