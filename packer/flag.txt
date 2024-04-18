@@ -1,0 +1,151 @@
+wget https://artifacts.picoctf.net/c_titan/21/out
+--2024-04-17 15:56:56--  https://artifacts.picoctf.net/c_titan/21/out
+Resolving artifacts.picoctf.net (artifacts.picoctf.net)... 3.161.94.92, 3.161.94.59, 3.161.94.72, ...
+Connecting to artifacts.picoctf.net (artifacts.picoctf.net)|3.161.94.92|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 336520 (329K) [application/octet-stream]
+Saving to: ‘out’
+
+out                                       100%[====================================================================================>] 328.63K  47.2KB/s    in 7.0s    
+
+2024-04-17 15:57:11 (47.2 KB/s) - ‘out’ saved [336520/336520]
+
+                                                                                                                                                                       
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/packer]
+└─$ ls
+out
+                                                                                                                                                                       
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/packer]
+└─$ hexdump -C out | less
+
+zsh: suspended  hexdump -C out | less
+                                                                                                                                                                       
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/packer]
+└─$ upx       
+                       Ultimate Packer for eXecutables
+                          Copyright (C) 1996 - 2024
+UPX 4.2.2       Markus Oberhumer, Laszlo Molnar & John Reiser    Jan 3rd 2024
+
+Usage: upx [-123456789dlthVL] [-qvfk] [-o file] file..
+
+Commands:
+  -1     compress faster                   -9    compress better
+  -d     decompress                        -l    list compressed file
+  -t     test compressed file              -V    display version number
+  -h     give more help                    -L    display software license
+Options:
+  -q     be quiet                          -v    be verbose
+  -oFILE write output to 'FILE'
+  -f     force compression of suspicious files
+  -k     keep backup files
+file..   executables to (de)compress
+
+Type 'upx --help' for more detailed help.
+
+UPX comes with ABSOLUTELY NO WARRANTY; for details visit https://upx.github.io
+                                                                                               
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/packer]
+└─$ upx -d out 
+                       Ultimate Packer for eXecutables
+                          Copyright (C) 1996 - 2024
+UPX 4.2.2       Markus Oberhumer, Laszlo Molnar & John Reiser    Jan 3rd 2024
+
+        File size         Ratio      Format      Name
+   --------------------   ------   -----------   -----------
+[WARNING] bad b_info at 0x4b718
+
+[WARNING] ... recovery at 0x4b714
+
+    877724 <-    336520   38.34%   linux/amd64   out
+
+Unpacked 1 file.
+                                                                                               
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/packer]
+└─$ file out 
+out: ELF 64-bit LSB executable, x86-64, version 1 (GNU/Linux), statically linked, BuildID[sha1]=fedfa2b06929b414534771a3fdd291559e1190b1, for GNU/Linux 3.2.0, not stripped
+                                                                                               
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/packer]
+└─$ strings out | less     
+
+zsh: suspended  strings out | less
+                                                                                               
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/packer]
+└─$ ls
+out
+                                                                                               
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/packer]
+└─$ chmod +x out     
+                                                                                               
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/packer]
+└─$ /.out
+zsh: no such file or directory: /.out
+                                                                                               
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/packer]
+└─$ ls
+out
+                                                                                               
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/packer]
+└─$ ./out          
+Enter the password to unlock this file: kksks
+You entered: kksks
+
+Access denied
+                                                                                               
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/packer]
+└─$ strings out | less
+
+zsh: done       strings out | 
+zsh: suspended  less
+                                                                                               
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/packer]
+└─$ strings out | less >brian.txt
+                                                                                               
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/packer]
+└─$ ls
+brian.txt  out  pass
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/packer]
+└─$ strings out | grep pass  
+Enter the password to unlock this file: 
+                                                                                               
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/packer]
+└─$ ./out
+Enter the password to unlock this file: 7069636f4354467b5539585f556e5034636b314e365f42316e34526933535f33373161613966667d
+You entered: 7069636f4354467b5539585f556e5034636b314e365f42316e34526933535f33373161613966667d
+
+Access denied
+                                                                                               
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/packer]
+└─$ 
+                                                                                               
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/packer]
+└─$ ./out
+Enter the password to unlock this file: 7069636f4354467b5539585f556e5034636b314e365f42316e34526933535f33373161613966667d
+You entered: 7069636f4354467b5539585f556e5034636b314e365f42316e34526933535f33373161613966667d
+
+Access denied
+                                                                                               
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/packer]
+└─$ echo -n "7069636f4354467b5539585f556e5034636b314e365f42316e34526933535f33373161613966667d" | xxd -r -p
+
+picoCTF{U9X_UnP4ck1N6_B1n4Ri3S_371aa9ff}                                                                                                                                  
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/packer]
+└─$ 
+                                                                                                                                  
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/packer]
+└─$ subl flag.txt          
+                                                                                                                                  
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/packer]
+└─$ ls
+brian.txt  out  pass
+                                                                                                                                  
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/packer]
+└─$ grep -A 2 "password" out         
+grep: out: binary file matches
+                                                                                                                                  
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/packer]
+└─$ grep -A 2 "password" brian.txt 
+Enter the password to unlock this file: 
+You entered: %s
+Pass                                                                         
+
+                                                                         
