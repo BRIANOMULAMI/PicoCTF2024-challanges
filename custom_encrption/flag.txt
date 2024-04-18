@@ -1,0 +1,134 @@
+mkdir custom_encrption
+                                                                                                   
+┌──(brian㉿BRIAN)-[~/Downloads/my docs/CTF/picoCTF2024]
+└─$ ls
+can_you_see_me  custom_encrption  verify
+                                                                                                   
+┌──(brian㉿BRIAN)-[~/Downloads/my docs/CTF/picoCTF2024]
+└─$ cd custom_encrption 
+                                                                                                   
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/custom_encrption]
+└─$ wget https://artifacts.picoctf.net/c_titan/95/enc_flag    
+--2024-04-17 13:37:38--  https://artifacts.picoctf.net/c_titan/95/enc_flag
+Resolving artifacts.picoctf.net (artifacts.picoctf.net)... 3.161.94.59, 3.161.94.72, 3.161.94.116, ...
+Connecting to artifacts.picoctf.net (artifacts.picoctf.net)|3.161.94.59|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 271 [application/octet-stream]
+Saving to: ‘enc_flag’
+
+enc_flag                 100%[=================================>]     271  --.-KB/s    in 0s      
+
+2024-04-17 13:37:42 (99.2 MB/s) - ‘enc_flag’ saved [271/271]
+
+                                                                                                   
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/custom_encrption]
+└─$ wget https://artifacts.picoctf.net/c_titan/95/custom_encryption.py
+--2024-04-17 13:37:50--  https://artifacts.picoctf.net/c_titan/95/custom_encryption.py
+Resolving artifacts.picoctf.net (artifacts.picoctf.net)... 3.161.94.59, 2600:9000:2757:5600:16:5ec5:2840:93a1, 2600:9000:2757:1200:16:5ec5:2840:93a1, ...
+Connecting to artifacts.picoctf.net (artifacts.picoctf.net)|3.161.94.59|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 1411 (1.4K) [application/octet-stream]
+Saving to: ‘custom_encryption.py’
+
+custom_encryption.py     100%[=================================>]   1.38K  --.-KB/s    in 0s      
+
+2024-04-17 13:37:55 (14.0 MB/s) - ‘custom_encryption.py’ saved [1411/1411]
+
+                                                                                                   
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/custom_encrption]
+└─$ ls
+custom_encryption.py  enc_flag
+                                                                                                   
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/custom_encrption]
+└─$ cat custom_encryption.py 
+from random import randint
+import sys
+
+
+def generator(g, x, p):
+    return pow(g, x) % p
+
+
+def encrypt(plaintext, key):
+    cipher = []
+    for char in plaintext:
+        cipher.append(((ord(char) * key*311)))
+    return cipher
+
+
+def is_prime(p):
+    v = 0
+    for i in range(2, p + 1):
+        if p % i == 0:
+            v = v + 1
+    if v > 1:
+        return False
+    else:
+        return True
+
+
+def dynamic_xor_encrypt(plaintext, text_key):
+    cipher_text = ""
+    key_length = len(text_key)
+    for i, char in enumerate(plaintext[::-1]):
+        key_char = text_key[i % key_length]
+        encrypted_char = chr(ord(char) ^ ord(key_char))
+        cipher_text += encrypted_char
+    return cipher_text
+
+
+def test(plain_text, text_key):
+    p = 97
+    g = 31
+    if not is_prime(p) and not is_prime(g):
+        print("Enter prime numbers")
+        return
+    a = randint(p-10, p)
+    b = randint(g-10, g)
+    print(f"a = {a}")
+    print(f"b = {b}")
+    u = generator(g, a, p)
+    v = generator(g, b, p)
+    key = generator(v, a, p)
+    b_key = generator(u, b, p)
+    shared_key = None
+    if key == b_key:
+        shared_key = key
+    else:
+        print("Invalid key")
+        return
+    semi_cipher = dynamic_xor_encrypt(plain_text, text_key)
+    cipher = encrypt(semi_cipher, shared_key)
+    print(f'cipher is: {cipher}')
+
+
+if __name__ == "__main__":
+    message = sys.argv[1]
+    test(message, "trudeau")
+                                                                                                   
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/custom_encrption]
+└─$ ls
+custom_encryption.py  enc_flag
+                                                                                                   
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/custom_encrption]
+└─$ cat enc_flag            
+a = 90
+b = 26
+cipher is: [61578, 109472, 437888, 6842, 0, 20526, 129998, 526834, 478940, 287364, 0, 567886, 143682, 34210, 465256, 0, 150524, 588412, 6842, 424204, 164208, 184734, 41052, 41052, 116314, 41052, 177892, 348942, 218944, 335258, 177892, 47894, 82104, 116314]
+                                                                                                   
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/custom_encrption]
+└─$ subl custom_encryption.py 
+                                                                                                                                                                       
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/custom_encrption]
+└─$ python3 custom_encryption.py 
+  File "/home/brian/Downloads/my docs/CTF/picoCTF2024/custom_encrption/custom_encryption.py", line 62
+    plaintext = ""
+    ^
+IndentationError: expected an indented block after function definition on line 61
+                                                                                                                                                                       
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/custom_encrption]
+└─$ python3 custom_encryption.py
+picoCTF{custom_d2cr0pt6d_751a22dc}
+                                                                                                                                                                       
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/custom_encrption]
+└─$ 
