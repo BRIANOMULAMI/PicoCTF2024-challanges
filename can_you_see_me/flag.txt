@@ -1,0 +1,66 @@
+ (brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/can_you_see_me]
+└─$ wget https://artifacts.picoctf.net/c_titan/131/unknown.zip        
+--2024-04-17 13:27:27--  https://artifacts.picoctf.net/c_titan/131/unknown.zip
+Resolving artifacts.picoctf.net (artifacts.picoctf.net)... 52.85.24.7, 2600:9000:20d9:4400:16:5ec5:2840:93a1, 2600:9000:20d9:1400:16:5ec5:2840:93a1, ...
+Connecting to artifacts.picoctf.net (artifacts.picoctf.net)|52.85.24.7|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 2252296 (2.1M) [application/octet-stream]
+Saving to: ‘unknown.zip’
+
+unknown.zip              100%[=================================>]   2.15M  98.0KB/s    in 25s     
+
+2024-04-17 13:27:56 (88.0 KB/s) - ‘unknown.zip’ saved [2252296/2252296]
+
+                                                                                                   
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/can_you_see_me]
+└─$ ls
+unknown.zip
+                                                                                                   
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/can_you_see_me]
+└─$ unzip unknown.zip 
+Archive:  unknown.zip
+  inflating: ukn_reality.jpg         
+                                                                                                   
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/can_you_see_me]
+└─$ ls
+ukn_reality.jpg  unknown.zip
+                                                                                                   
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/can_you_see_me]
+└─$ strings ukn_reality.jpg >text.txt
+                                                                                                   
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/can_you_see_me]
+└─$ ls
+text.txt  ukn_reality.jpg  unknown.zip
+                                                                                                   
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/can_you_see_me]
+└─$ subl                             
+                                                                                                   
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/can_you_see_me]
+└─$ subl text.txt       
+                                                                                                   
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/can_you_see_me]
+└─$ cat text.txt     
+JFIF
+7http://ns.adobe.com/xap/1.0/
+<?xpacket begin='
+' id='W5M0MpCehiHzreSzNTczkc9d'?>
+<x:xmpmeta xmlns:x='adobe:ns:meta/' x:xmptk='Image::ExifTool 11.88'>
+<rdf:RDF xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+ <rdf:Description rdf:about=''
+  xmlns:cc='http://creativecommons.org/ns#'>
+  <cc:attributionURL rdf:resource='cGljb0NURntNRTc0RDQ3QV9ISUREM05fZDhjMzgxZmR9Cg=='/>
+ </rdf:Description>
+</rdf:RDF>
+</x:xmpmeta>
+
+
+
+
+cGljb0NURntNRTc0RDQ3QV9ISUREM05fZDhjMzgxZmR9Cg==  this is abase64 and it needs to be decoded
+                                                                                                           
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/can_you_see_me]
+└─$ 
+                                                                                                   
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/can_you_see_me]
+└─$ echo "cGljb0NURntNRTc0RDQ3QV9ISUREM05fZDhjMzgxZmR9Cg==" | base64 -d    
+picoCTF{ME74D47A_HIDD3N_d8c381fd}
