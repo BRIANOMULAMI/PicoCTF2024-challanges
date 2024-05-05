@@ -1,15 +1,10 @@
-#you can use curl grep the flag since we know it is in the source code
-curl -s http://titan.picoctf.net:61176/ | grep -oE picoCTF{.*}             
-picoCTF{pr3tty_c0d3_ed938a7e}"></p><p class="picoctf{}">I just deliver flags, I don't know how to read them...</p></div></div><br class="picoctf{}
+0x402118,(nil),0x7fb7c8f17a00,(nil),0x8e8880,0xa347834,0x7ffce66fe610,0x7fb7c8d08e60,0x7fb7c8f2d4d0,0x1,0x7ffce66fe6e0,(nil),(nil),0x7b4654436f636970,0x355f31346d316e34,0x3478345f33317937,0x35625f673431665f,0x7d663839623764,0x7,0x7fb7c8f2f8d8,0x2300000007,0x206e693374307250,0xa336c797453,0x9
 
 
-#We can manually ispect the code of the site
-curl -s http://titan.picoctf.net:61176/ | grep -oE picoCTF{.*}             
-picoCTF{pr3tty_c0d3_ed938a7e}"></p><p class="picoctf{}">I just deliver flags, I don't know how to read them...</p></div></div><br class="picoctf{}
-
-#flag in bth senarios
-
-picoCTF{pr3tty_c0d3_ed938a7e}
 
 
-                                                                      
+0x7b4654436f636970,0x355f31346d316e34,0x3478345f33317937,0x35625f673431665f,0x7d663839623764
+#then do the rearangement
+
+0x7d663839623764,0x355f31346d316e34,0x35625f673431665f,0x3478345f33317937,0x355f31346d316e34
+
