@@ -1,0 +1,149 @@
+                                                                     
+┌──(brian㉿BRIAN)-[~/Downloads/my docs/CTF/picoCTF2024]
+└─$ ls
+                                                                     
+┌──(brian㉿BRIAN)-[~/Downloads/my docs/CTF/picoCTF2024]
+└─$ mkdir mob_psycho
+                                                                                   
+┌──(brian㉿BRIAN)-[~/Downloads/my docs/CTF/picoCTF2024]
+└─$ ls
+mob_psycho
+                                                                                   
+┌──(brian㉿BRIAN)-[~/Downloads/my docs/CTF/picoCTF2024]
+└─$ cd mob_psycho 
+                                                                                   
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/mob_psycho]
+└─$ wget https://artifacts.picoctf.net/c_titan/143/mobpsycho.apk    
+--2024-05-05 21:31:14--  https://artifacts.picoctf.net/c_titan/143/mobpsycho.apk
+Resolving artifacts.picoctf.net (artifacts.picoctf.net)... 2600:9000:2054:3e00:16:5ec5:2840:93a1, 2600:9000:2054:e600:16:5ec5:2840:93a1, 2600:9000:2054:2600:16:5ec5:2840:93a1, ...
+Connecting to artifacts.picoctf.net (artifacts.picoctf.net)|2600:9000:2054:3e00:16:5ec5:2840:93a1|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 4136366 (3.9M) [application/octet-stream]
+Saving to: ‘mobpsycho.apk’
+
+mobpsycho.apk        100%[=====================>]   3.94M   273KB/s    in 12s     
+
+2024-05-05 21:31:29 (326 KB/s) - ‘mobpsycho.apk’ saved [4136366/4136366]
+
+                                                                                   
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/mob_psycho]
+└─$ ls
+mobpsycho.apk
+                                                                                   
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/mob_psycho]
+└─$ file mobpsycho.apk 
+mobpsycho.apk: Zip archive data, at least v1.0 to extract, compression method=store
+                                                                                   
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/mob_psycho]
+└─$ unzip mobpsycho.apk 
+Archive:  mobpsycho.apk
+   creating: res/
+   creating: res/anim/
+                                                                        
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/mob_psycho]
+└─$ ls
+AndroidManifest.xml  classes.dex   classes3.dex   res
+META-INF             classes2.dex  mobpsycho.apk  resources.arsc
+                                                                                   
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/mob_psycho]
+└─$ cd ..                                            
+                                                                                   
+┌──(brian㉿BRIAN)-[~/Downloads/my docs/CTF/picoCTF2024]
+└─$ grep -o '\b[a-zA-Z0-9_-]*\.txt\b' larger_file.txt
+
+grep: larger_file.txt: No such file or directory
+                                                                                   
+┌──(brian㉿BRIAN)-[~/Downloads/my docs/CTF/picoCTF2024]
+└─$ grep -o '\b[a-zA-Z0-9_-]*\.txt\b' mob_psycho     
+grep: mob_psycho: Is a directory
+                                                                                   
+┌──(brian㉿BRIAN)-[~/Downloads/my docs/CTF/picoCTF2024]
+└─$ find mob_psycho -type f -name "*.txt" 
+mob_psycho/res/color/flag.txt
+                                                                                   
+┌──(brian㉿BRIAN)-[~/Downloads/my docs/CTF/picoCTF2024]
+└─$ cd mob_psycho/res/color/flag.txt
+cd: not a directory: mob_psycho/res/color/flag.txt
+                                                                                   
+┌──(brian㉿BRIAN)-[~/Downloads/my docs/CTF/picoCTF2024]
+└─$ cd ..                           
+                                                                                   
+┌──(brian㉿BRIAN)-[~/Downloads/my docs/CTF]
+└─$ cd mob_psycho/res/color/flag.txt
+cd: no such file or directory: mob_psycho/res/color/flag.txt
+                                                                                   
+┌──(brian㉿BRIAN)-[~/Downloads/my docs/CTF]
+└─$ cd mob_psycho/res/color/        
+cd: no such file or directory: mob_psycho/res/color/
+                                                                                   
+┌──(brian㉿BRIAN)-[~/Downloads/my docs/CTF]
+└─$ cd mob_psycho/res/color 
+cd: no such file or directory: mob_psycho/res/color
+                                                                                   
+┌──(brian㉿BRIAN)-[~/Downloads/my docs/CTF]
+└─$ ls
+ ctflearn  'over the wire ctf'   picoCTF2024   pico_mini_bypwn
+                                                                                   
+┌──(brian㉿BRIAN)-[~/Downloads/my docs/CTF]
+└─$ cd picoCTF2024         
+                                                                                   
+┌──(brian㉿BRIAN)-[~/Downloads/my docs/CTF/picoCTF2024]
+└─$ ls
+mob_psycho
+                                                                                   
+┌──(brian㉿BRIAN)-[~/Downloads/my docs/CTF/picoCTF2024]
+└─$ cd mob_psycho          
+                                                                                   
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/mob_psycho]
+└─$ cd mob_psycho/res/color
+cd: no such file or directory: mob_psycho/res/color
+                                                                                   
+┌──(brian㉿BRIAN)-[~/…/my docs/CTF/picoCTF2024/mob_psycho]
+└─$ cd res                 
+                                                                                   
+┌──(brian㉿BRIAN)-[~/…/CTF/picoCTF2024/mob_psycho/res]
+└─$ ls
+anim                      drawable-ldrtl-xxhdpi-v17   layout-land
+anim-v21                  drawable-ldrtl-xxxhdpi-v17  layout-ldrtl-v17
+animator                  drawable-mdpi-v4            layout-sw600dp-v13
+animator-v21              drawable-v21                layout-v21
+color                     drawable-v23                layout-v26
+color-night-v8            drawable-v24                layout-watch-v20
+color-v23                 drawable-watch-v20          mipmap-anydpi-v26
+color-v31                 drawable-xhdpi-v4           mipmap-hdpi-v4
+drawable                  drawable-xxhdpi-v4          mipmap-mdpi-v4
+drawable-hdpi-v4          drawable-xxxhdpi-v4         mipmap-xhdpi-v4
+drawable-ldrtl-hdpi-v17   interpolator                mipmap-xxhdpi-v4
+drawable-ldrtl-mdpi-v17   interpolator-v21            mipmap-xxxhdpi-v4
+drawable-ldrtl-xhdpi-v17  layout                      xml
+                                                                                   
+┌──(brian㉿BRIAN)-[~/…/CTF/picoCTF2024/mob_psycho/res]
+└─$ cd color   
+                                                                                   
+┌──(brian㉿BRIAN)-[~/…/picoCTF2024/mob_psycho/res/color]
+└─$ ls
+abc_background_cache_hint_selector_material_dark.xml
+abc_background_cache_hint_selector_material_light.xml
+abc_hint_foreground_material_dark.xml
+abc_hint_foreground_material_light.xml
+abc_primary_text_disable_only_material_dark.xml
+abc_primary_text_disable_only_material_light.xml
+abc_primary_text_material_dark.xml
+abc_primary_text_material_light.xml
+abc_search_url_text.xml
+abc_secondary_text_material_dark.xml
+abc_secondary_text_material_light.xml
+checkbox_themeable_attribute_color.xml
+design_box_stroke_color.xml
+design_error.xml
+design_icon_tint.xml
+flag.txt
+
+                                                                                   
+┌──(brian㉿BRIAN)-[~/…/picoCTF2024/mob_psycho/res/color]
+└─$ cat flag.txt
+7069636f4354467b6178386d433052553676655f4e5838356c346178386d436c5f37303364643965667d
+                                                                                   
+┌──(brian㉿BRIAN)-[~/…/picoCTF2024/mob_psycho/res/color]
+└─$ echo "7069636f4354467b6178386d433052553676655f4e5838356c346178386d436c5f37303364643965667d" | xxd -r -p
+picoCTF{ax8mC0RU6ve_NX85l4ax8mCl_703dd9ef} 
